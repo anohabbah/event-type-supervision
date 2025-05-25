@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: event-type-supervision
+  
+  data:
+    mongodb:
+      database: ${MONGODB_DATABASE:event-type-supervision}
+      auto-index-creation: true
+  
+  # Docker Compose configuration
+  docker:
+    compose:
+      file: compose.yaml
+      enabled: true
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    dev.abbah: DEBUG
+    org.springframework.data.mongodb: INFO
+
+# Server configuration
+server:
+  port: 8080
+
+# Actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# OpenAPI/Swagger configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
